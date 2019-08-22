@@ -1,20 +1,30 @@
 import { Injectable } from '@nestjs/common';
+import { LoggerContext } from './services/logger-context.service';
 
+const RESULT_KEY = 'result';
 @Injectable()
 export class AppService {
+
+  constructor(private readonly loggerContext: LoggerContext) {}
+
   getHello(): string {
-    return 'Hello World!';
+    const result = 'Hello World';
+    this.loggerContext.add(RESULT_KEY, result)
+    return result;
   }
   getBye(): string {
-    return 'Bye!';
+    const result = 'Bye!';
+    this.loggerContext.add(RESULT_KEY, result)
+    return result;
   }
   getEcho(message): string {
-    return `Echo: ${message}`;
+    const result = `echo ${message}`;
+    this.loggerContext.add(RESULT_KEY, result)
+    return result;
   }
   printName(firstName: string, lastName: string): string {
-    return `${lastName}, ${firstName}`;
-  }
-  printRandom(random: number): string {
-    return `Random: ${random}`;
+    const result = `${lastName}, ${firstName}`;
+    this.loggerContext.add(RESULT_KEY, result)
+    return result;
   }
 }

@@ -14,6 +14,7 @@ export class AppController {
   async hello(): Promise<string> {
     return new Promise(resolve => {
       setTimeout(() => {
+        this.loggerContext.add('businessKey', 'someRandomBusinessValue');
         resolve(this.appService.getHello());
       }, 30000);
     });
